@@ -13,24 +13,34 @@ public class DialogueManager : MonoBehaviour
     public Animator animator;
 
     private Queue<string> sentences;
+    private Queue<string> names;
+
+    //private GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
         sentences = new Queue<string>();
+        names = new Queue<string>();
+        //player = GameObject.FindGameObjectWithTag("Player");
     }
 
     public void StartDialogue(Dialogue dialogue)
     {
         // Debug.Log("Starting conversation with person named" + dialogue.name);
 
+        PlayerMovement.canMove = false;
+
         animator.SetBool("IsOpen", true);
 
-        nameText.text = dialogue.name;
-
         sentences.Clear();
+        names.Clear();
 
-        foreach(string sentence in dialogue.sentences)
+        foreach (string name in dialogue.names)
+        {
+            names.Enqueue(name);
+        }
+        foreach (string sentence in dialogue.sentences)
         {
             sentences.Enqueue(sentence);
         }
@@ -45,17 +55,21 @@ public class DialogueManager : MonoBehaviour
             EndDialogue();
             return;
         }
-        dialogueText.text = string.Empty;
+        string name = names.Dequeue();
+        nameText.text = name;
+        string sentence = sentences.Dequeue();       
+        StopAllCoroutines();
+        StartCoroutine(TypeLine(sentence));
 
-        StartCoroutine(TypeLine());
         //string sentence = sentences.Dequeue();
         //dialogueText.text = sentence;
     }
 
-    IEnumerator TypeLine()
+    IEnumerator TypeLine(string sentence)
     {
+        dialogueText.text = "";
         //Type characters one by one
-        foreach(char c in sentences.Dequeue().ToCharArray())
+        foreach(char c in sentence.ToCharArray())
         {
             dialogueText.text += c;
             yield return new WaitForSeconds(textSpeed);
@@ -65,5 +79,6 @@ public class DialogueManager : MonoBehaviour
     void EndDialogue()
     { 
         animator.SetBool("IsOpen", false);
+        PlayerMovement.canMove = true;
     }
 }
