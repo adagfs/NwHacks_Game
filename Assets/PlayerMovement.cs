@@ -19,7 +19,6 @@ public class PlayerMovement : MonoBehaviour {
 	private bool isJumping = false;
 	private bool isGrounded;
 	private int jumpCount;
-    public Animator animator;
 
 	private void Awake(){
 		rb = GetComponent<Rigidbody2D>();
@@ -88,14 +87,14 @@ public class PlayerMovement : MonoBehaviour {
 			isJumping = true;
 		}
 
-        if(transform.position.x == 53)
-        {
-            animator.SetBool("TouchingBloob", true);
-        }
-        else
-        {
-            animator.SetBool("TouchingBloob", false);
-        }
+        //if(transform.position.x == 53)
+        //{
+        //    animator.SetBool("TouchingBloob", true);
+        //}
+        //else
+        //{
+        //    animator.SetBool("TouchingBloob", false);
+        //}
 
         
 	}
