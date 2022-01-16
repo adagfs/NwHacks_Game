@@ -8,5 +8,7 @@ public class Interactable : MonoBehaviour
         // has been picked up
         // make it disappear
         gameObject.SetActive(false);
+        //GetComponent<DialogueTrigger>().TriggerDialogue();
+
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
+    public static bool canMove;
 	public float moveSpeed;
 	public float jumpForce;
 	public Transform ceilingCheck;
@@ -18,6 +19,7 @@ public class PlayerMovement : MonoBehaviour {
 	private bool isJumping = false;
 	private bool isGrounded;
 	private int jumpCount;
+    public Animator animator;
 
 	private void Awake(){
 		rb = GetComponent<Rigidbody2D>();
@@ -26,16 +28,19 @@ public class PlayerMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		jumpCount = maxJumpCount;
+        canMove = true;
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		// get inputs
-		ProcessInputs();
-
-		// animate
-		Animate();
+        // get inputs
+        if (canMove)
+        {
+            ProcessInputs();
+        }
+        // animate
+        Animate();
 	}
 
 	private void FixedUpdate() {
@@ -45,9 +50,12 @@ public class PlayerMovement : MonoBehaviour {
 		if (isGrounded) {
 			jumpCount = maxJumpCount;
 		}
-		// move
-		Move();
-	}
+        // move
+        if (canMove)
+        {
+            Move();
+        }
+    }
 
 	private void Move()
 	{
@@ -79,6 +87,17 @@ public class PlayerMovement : MonoBehaviour {
 		if (Input.GetButtonDown("Jump") && jumpCount > 0) {
 			isJumping = true;
 		}
+
+        if(transform.position.x == 53)
+        {
+            animator.SetBool("TouchingBloob", true);
+        }
+        else
+        {
+            animator.SetBool("TouchingBloob", false);
+        }
+
+        
 	}
 
 	private void FlipCharacter() {

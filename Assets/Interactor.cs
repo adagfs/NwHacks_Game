@@ -5,6 +5,7 @@ using UnityEngine;
 public class Interactor : MonoBehaviour
 {
 	GameObject currentObj = null;
+    public Animator animator;
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
@@ -32,6 +33,7 @@ public class Interactor : MonoBehaviour
 		{
 			// change character to have umbrella 
 			currentObj.SendMessage("DoInteraction");
+            animator.SetBool("HasUmbrella", true);
 		}
 
 	}
