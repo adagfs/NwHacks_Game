@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Interactor : MonoBehaviour
+
 {
 	GameObject currentObj = null;
+	public Sprite newSprite; 
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
@@ -32,6 +34,7 @@ public class Interactor : MonoBehaviour
 		{
 			// change character to have umbrella 
 			currentObj.SendMessage("DoInteraction");
+			this.gameObject.GetComponent<SpriteRenderer>().sprite = newSprite;
 		}
 
 	}
