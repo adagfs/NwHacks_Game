@@ -1,3 +1,4 @@
+<<<<<<< HEAD:Assets/Dialogue/DialogueManager.cs.meta
 fileFormatVersion: 2
 guid: 52ced372fe915d849b3a40a567dadca5
 MonoImporter:
@@ -9,3 +10,16 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+=======
+fileFormatVersion: 2
+guid: 5fbec044c0f0545e0b553d075e6161b0
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+>>>>>>> dc55de5d0112bde0b6a085ad043edefef49b24d4:Assets/Interactor.cs.meta
