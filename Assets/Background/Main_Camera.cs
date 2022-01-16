@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BackgroundLoop : MonoBehaviour {
+public class Main_Camera : MonoBehaviour {
 	public GameObject[] levels;
 	private Camera mainCamera;
 	private Vector2 screenBounds;
